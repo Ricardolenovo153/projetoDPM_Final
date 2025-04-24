@@ -13,3 +13,7 @@ Repositório para o projeto da disciplina de Desenvolvimento do Projeto Multimed
     
     * Criar DOM Document Object - PS: o professor auxilia *
 
+
+
+Realizado por: Ricardo Estêvão e Patricia Luis
+
