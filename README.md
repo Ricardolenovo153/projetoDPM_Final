@@ -9,5 +9,6 @@ Repositório para o projeto da disciplina de Desenvolvimento do Projeto Multimed
     * Fazer pedido HTTP para ler ficheiro .JSON *
 
     *** Criar dinamicamente o HTML de cada carro ***
-    Criar DOM Document Object - PS: o professor auxilia
+    
+    * Criar DOM Document Object - PS: o professor auxilia *
 
