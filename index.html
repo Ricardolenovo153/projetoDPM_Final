@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peregrine Showroom</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+<header>
+  <div class="header">
+    <div class="logo">
+      <h1>Peregrine Showroom</h1>
+      <img src="imagens/logo.png" width="80px" height="50px" alt="">
+    </div>
+    <div class="links">
+      <p><a href="index.html" class="link active">Home <i class="fa-solid fa-house"></i></a></p>
+      <p><a href="#card-container" class="link">Catálogo <i class="fa-solid fa-car-side"></i></a></p>
+      <p><a href="account.html" class="link">Conta <i class="fa-solid fa-user"></i></a></p>
+    </div>
+  </div>
+  <hr>
+</header>
+
+<div class="card-container" id="card-container">
+  <!-- Os cards serão inseridos aqui via JavaScript -->
+</div>
+
+<script>
+fetch('JS/carro.json')
+  .then(response => response.json())
+  .then(data => {
+    const container = document.getElementById('card-container');
+    data.rows.forEach(carro => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <img src="${carro.imagem}" alt="${carro.modelo}">
+        <div class="card-content">
+          <h2 class="card-title">${carro.marca} ${carro.modelo}</h2>
+          ${carro.subModelo && carro.subModelo !== '0' ? `<p>${carro.subModelo}</p>` : '<p>&nbsp;</p>'}
+          <p class="card-text">
+            <i class="fas fa-horse-head"></i> <strong>Potência:</strong> ${carro.potencia}<br>
+            <i class="fas fa-calendar-alt"></i> <strong>Ano:</strong> ${carro.ano}<br>
+            <i class="fas fa-gas-pump"></i> <strong>Combustível:</strong> ${carro.combustivel}<br>
+            <i class="fas fa-road"></i> <strong>Quilometragem:</strong> ${carro.kilometros.toLocaleString('pt-BR')} km<br>
+            <i class="fas fa-cogs"></i> <strong>Transmissão:</strong> ${carro.transmissao}<br>
+            <i class="fas fa-door-closed"></i> <strong>Portas:</strong> ${carro.nPortas}<br>
+          </p>
+          <div class="card-price">€ ${carro.preco.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</div>
+          <a href="#" class="card-button">Comprar</a>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  })
+  .catch(error => {
+    document.getElementById('card-container').innerHTML = "<p>Erro ao carregar os carros.</p>";
+    console.error('Erro ao carregar JSON:', error);
+  });
+</script>
+
+</body>
+</html>
