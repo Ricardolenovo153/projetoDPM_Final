@@ -13,8 +13,8 @@
 
 .links{
     display: flex;
-    text-decoration: none;
-    margin-left: 60vw;
+    text-decoration: none;  
+    margin-left: 55vw !important;
 }
 
 .link {
