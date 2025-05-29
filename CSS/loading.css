@@ -34,7 +34,14 @@
     height: 300px;
     position: relative;
   }
-  
+
+  .rpm-display {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    text-align: center;
+    color: white; /* ou a cor que quiseres */
+  }
+
   #rpmSlider {
     display: none;
   }
