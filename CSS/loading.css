@@ -1,13 +1,4 @@
-body {
-    font-family: sans-serif;
-    text-align: center;
-    background: #111;
-    color: white;
-    margin: 0;
-    padding: 2rem;
-  }
-  
-  #loadingScreen {
+    #loadingScreen {
     position: fixed;
     top: 0;
     left: 0;
