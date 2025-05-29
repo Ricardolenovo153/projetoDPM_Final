@@ -18,7 +18,7 @@ Utilizou-se a função `fetch()` para efetuar um pedido HTTP ao ficheiro `carros
 Com base nos dados lidos a partir do JSON, foi gerado dinamicamente o HTML correspondente a cada carro, utilizando o DOM (Document Object Model) em JavaScript. Foram incluídos elementos como a imagem, marca, modelo, ano e preço de cada veículo.
 
 **Manipulação do DOM:**  
-A criação do conteúdo HTML foi feita de forma programática, com o apoio do professor, através de métodos como `document.createElement()` e `appendChild()` para adicionar os elementos à página.
+A criação do conteúdo HTML foi feita de forma programática, através de métodos como `document.createElement()` e `appendChild()` para adicionar os elementos à página.
 
 ---
 Realizado por: Ricardo Estêvão e Patricia Luis
