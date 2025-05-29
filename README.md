@@ -21,5 +21,13 @@ Com base nos dados lidos a partir do JSON, foi gerado dinamicamente o HTML corre
 A criação do conteúdo HTML foi feita de forma programática, através de métodos como `document.createElement()` e `appendChild()` para adicionar os elementos à página.
 
 ---
+
+## 🌐 Aceder ao Site
+Podes visualizar o projeto em funcionamento através do seguinte QR code:
+
+![Capturar](https://github.com/user-attachments/assets/4635fcd8-3444-4a6f-9e9a-913dc65ee306)
+
+---
+
 Realizado por: Ricardo Estêvão e Patricia Luis
 
