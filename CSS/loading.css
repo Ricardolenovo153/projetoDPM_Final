@@ -33,16 +33,6 @@
     height: 300px;
     position: relative;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .rpm-display {
-    margin-top: 20px;
-    font-size: 1.2rem;
-    text-align: center;
-    color: white; /* ou a cor que quiseres */
   }
 
   #rpmSlider {
