@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+  <iframe id="loadingFrame" src="loading.html" style="position:fixed; top:0; left:0; width:100%; height:100vh; border:none; z-index:9999;"></iframe>
 
 <div class="main-content">
   <header>
@@ -28,6 +29,15 @@
   </div>
 
   <script>
+    window.addEventListener('load', () => {
+  const iframe = document.getElementById('loadingFrame');
+  setTimeout(() => {
+    iframe.style.opacity = 0;
+    iframe.style.pointerEvents = 'none';
+  }, 2000); // esconde após 2 segundos
+});
+
+
   fetch('JS/carro.json')
     .then(response => response.json())
     .then(data => {

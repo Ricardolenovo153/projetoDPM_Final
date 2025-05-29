@@ -1,3 +1,15 @@
+  body {
+    margin: 0;
+    background: black;
+    color: white;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+    
+    
     #loadingScreen {
     position: fixed;
     top: 0;
@@ -16,14 +28,13 @@
     opacity: 0;
   }
   
-  /* Restante do CSS permanece igual */
   .tachometer {
     display: inline-block;
+    width: 300px;
+    height: 300px;
+    position: relative;
   }
   
-  .tachometer {
-    display: inline-block;
-  }
   
   .dial {
     width: 300px;

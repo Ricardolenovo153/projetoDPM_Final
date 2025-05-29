@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <title>Loading</title>
+  <link rel="stylesheet" href="CSS/loading.css" />
+</head>
+<body>
+  <div class="tachometer">
+    <div class="dial">
+      <div class="ticks" id="ticks"></div>
+      <div class="needle" id="needle"></div>
+      <div class="center-circle"></div>
+    </div>
+    <input type="range" min="0" max="9000" value="0" id="rpmSlider" />
+    <p>RPM: <span id="rpmValue">0</span></p>
+  </div>
+
+  <script src="JS/loading.js"></script>
+</body>
+</html>
