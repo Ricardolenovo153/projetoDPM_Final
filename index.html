@@ -5,60 +5,145 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Peregrine Showroom</title>
   <link rel="stylesheet" href="CSS/style.css">
+  <link rel="stylesheet" href="CSS/loading.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
-<header>
-  <div class="header">
-    <div class="logo">
-      <h1>Peregrine Showroom</h1>
-      <img src="imagens/logo.png" width="80px" height="50px" alt="">
+
+  <div id="loadingScreen"> 
+    <div class="tachometer">
+      <div class="dial">
+        <div class="ticks" id="ticks"></div>
+        <div class="needle" id="needle"></div>
+        <div class="center-circle"></div>
+      </div>
+  
+      <!-- Debug: Slider de teste manual de RPMs -->
+      <input type="range" min="0" max="9000" value="0" id="rpmSlider" />
+      <p>RPM: <span id="rpmValue">0</span></p>
     </div>
-    <div class="links">
-      <p><a href="index.html" class="link active">Home <i class="fa-solid fa-house"></i></a></p>
-      <p><a href="#card-container" class="link">Catálogo <i class="fa-solid fa-car-side"></i></a></p>
+    </div> 
+
+
+
+<div class="main-content">
+  <header>
+    <div class="header">
+      <div class="logo">
+        <h1>Peregrine Showroom</h1>
+        <img src="imagens/logo.png" width="80px" height="50px" alt="">
+      </div>
+      <div class="links">
+        <p><a href="index.html" class="link active">Home <i class="fa-solid fa-house"></i></a></p>
+        <p><a href="#card-container" class="link">Catálogo <i class="fa-solid fa-car-side"></i></a></p>
+      </div>
     </div>
+    <hr>
+  </header>
+
+  <div class="card-container" id="card-container">
   </div>
-  <hr>
-</header>
 
-<div class="card-container" id="card-container">
-</div>
+  <script>
+// Conta-Rotações
+const slider = document.getElementById("rpmSlider");
+const needle = document.getElementById("needle");
+const rpmText = document.getElementById("rpmValue");
 
-<script>
-fetch('JS/carro.json')
-  .then(response => response.json())
-  .then(data => {
-    const container = document.getElementById('card-container');
-    data.rows.forEach(carro => {
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML = `
-        <img src="${carro.imagem}" alt="${carro.modelo}">
-        <div class="card-content">
-          <h2 class="card-title">${carro.marca} ${carro.modelo}</h2>
-          ${carro.subModelo && carro.subModelo !== '0' ? `<p>${carro.subModelo}</p>` : '<p>&nbsp;</p>'}
-          <p class="card-text">
-            <i class="fas fa-horse-head"></i> <strong>Potência:</strong> ${carro.potencia}<br>
-            <i class="fas fa-calendar-alt"></i> <strong>Ano:</strong> ${carro.ano}<br>
-            <i class="fas fa-gas-pump"></i> <strong>Combustível:</strong> ${carro.combustivel}<br>
-            <i class="fas fa-road"></i> <strong>Quilometragem:</strong> ${carro.kilometros.toLocaleString('pt-BR')} km<br>
-            <i class="fas fa-cogs"></i> <strong>Transmissão:</strong> ${carro.transmissao}<br>
-            <i class="fas fa-door-closed"></i> <strong>Portas:</strong> ${carro.nPortas}<br>
-          </p>
-          <div class="card-price">€ ${carro.preco.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</div>
-          <a href="#" class="card-button">Comprar</a>
-        </div>
-      `;
-      container.appendChild(card);
-    });
-  })
-  .catch(error => {
-    document.getElementById('card-container').innerHTML = "<p>Erro ao carregar os carros.</p>";
-    console.error('Erro ao carregar JSON:', error);
+slider.addEventListener("input", () => {
+  const rpm = parseInt(slider.value);
+  rpmText.textContent = rpm;
+  const angle = (rpm / 8000) * 197 - 135;
+  needle.style.transform = `rotate(${angle}deg)`;
+});
+
+const ticksContainer = document.getElementById("ticks");
+const minAngle = -135;
+const maxAngle = 85;
+const divisions = 8;
+
+for (let i = 0; i <= divisions; i++) {
+  const angle = minAngle + (i * (maxAngle - minAngle) / divisions);
+  const tick = document.createElement("div");
+  tick.className = "tick";
+  tick.style.transform = `rotate(${angle}deg) translateY(-130px)`;
+  ticksContainer.appendChild(tick);
+
+  const label = document.createElement("div");
+  label.className = "tick-label";
+  const radius = 110;
+  const rad = (angle * Math.PI / 180) - 8;
+  const x = 155 + radius * Math.cos(rad);
+  const y = 157 + radius * Math.sin(rad);
+  label.style.left = `${x}px`;
+  label.style.top = `${y}px`;
+  label.textContent = i * 1000;
+  ticksContainer.appendChild(label);
+}
+
+function animateRPM(targetRPM, duration = 2000) {
+  let currentRPM = 0;
+  const startTime = performance.now();
+  function update(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    currentRPM = Math.floor(progress * targetRPM);
+    rpmText.textContent = currentRPM;
+    const angle = (currentRPM / 8000) * 197 - 135;
+    needle.style.transform = `rotate(${angle}deg)`;
+    if (progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+
+animateRPM(9000);
+
+document.addEventListener('DOMContentLoaded', function() {
+  const loadingScreen = document.getElementById('loadingScreen');
+  setTimeout(function() {
+    loadingScreen.classList.add('fade-out');
+  }, 2000);
+  loadingScreen.addEventListener('transitionend', function() {
+    loadingScreen.style.display = 'none';
   });
-</script>
+
+  fetch('JS/carro.json')
+    .then(response => response.json())
+    .then(data => {
+      const container = document.getElementById('card-container');
+      data.rows.forEach(carro => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <img src="${carro.imagem}" alt="${carro.modelo}">
+          <div class="card-content">
+            <h2 class="card-title">${carro.marca} ${carro.modelo}</h2>
+            ${carro.subModelo && carro.subModelo !== '0' ? `<p>${carro.subModelo}</p>` : '<p>&nbsp;</p>'}
+            <p class="card-text">
+              <i class="fas fa-horse-head"></i> <strong>Potência:</strong> ${carro.potencia}<br>
+              <i class="fas fa-calendar-alt"></i> <strong>Ano:</strong> ${carro.ano}<br>
+              <i class="fas fa-gas-pump"></i> <strong>Combustível:</strong> ${carro.combustivel}<br>
+              <i class="fas fa-road"></i> <strong>Quilometragem:</strong> ${carro.kilometros.toLocaleString('pt-BR')} km<br>
+              <i class="fas fa-cogs"></i> <strong>Transmissão:</strong> ${carro.transmissao}<br>
+              <i class="fas fa-door-closed"></i> <strong>Portas:</strong> ${carro.nPortas}<br>
+            </p>
+            <div class="card-price">€ ${carro.preco.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</div>
+            <a href="#" class="card-button">Comprar</a>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    })
+    .catch(error => {
+      document.getElementById('card-container').innerHTML = "<p>Erro ao carregar os carros.</p>";
+      console.error('Erro ao carregar JSON:', error);
+    });
+});
+
+  </script>
+
+</div>
 
 </body>
 </html>
