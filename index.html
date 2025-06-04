@@ -10,69 +10,71 @@
 <body>
   <iframe id="loadingFrame" src="loading.html" style="position:fixed; top:0; left:0; width:100%; height:100vh; border:none; z-index:9999;"></iframe>
 
-<div class="main-content">
-  <header>
-    <div class="header">
-      <div class="logo">
-        <h1>Peregrine Showroom</h1>
-        <img src="imagens/logo.png" width="80px" height="50px" alt="">
+
+    <header>
+      <div class="header">
+        <div class="logo">
+          <h1>Peregrine Showroom</h1>
+          <img src="imagens/logo.png" width="80px" height="50px" alt="">
+        </div>
+        <div class="links">
+          <p><a href="index.html" class="link active">Home <i class="fa-solid fa-house"></i></a></p>
+          <p><a href="#card-container" class="link">Catálogo <i class="fa-solid fa-car-side"></i></a></p>
+        </div>
       </div>
-      <div class="links">
-        <p><a href="index.html" class="link active">Home <i class="fa-solid fa-house"></i></a></p>
-        <p><a href="#card-container" class="link">Catálogo <i class="fa-solid fa-car-side"></i></a></p>
-      </div>
-    </div>
-    <hr>
-  </header>
+      <hr>
+    </header>
+
+
 
   <div class="card-container" id="card-container">
-  </div>
-
-  <script>
-    window.addEventListener('load', () => {
-  const iframe = document.getElementById('loadingFrame');
-  setTimeout(() => {
-    iframe.style.opacity = 0;
-    iframe.style.pointerEvents = 'none';
-  }, 2000); // esconde após 2 segundos
-});
 
 
-  fetch('JS/carro.json')
-    .then(response => response.json())
-    .then(data => {
-      const container = document.getElementById('card-container');
-      data.rows.forEach(carro => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-          <img src="${carro.imagem}" alt="${carro.modelo}">
-          <div class="card-content">
-            <h2 class="card-title">${carro.marca} ${carro.modelo}</h2>
-            ${carro.subModelo && carro.subModelo !== '0' ? `<p>${carro.subModelo}</p>` : '<p>&nbsp;</p>'}
-            <p class="card-text">
-              <i class="fas fa-horse-head"></i> <strong>Potência:</strong> ${carro.potencia}<br>
-              <i class="fas fa-calendar-alt"></i> <strong>Ano:</strong> ${carro.ano}<br>
-              <i class="fas fa-gas-pump"></i> <strong>Combustível:</strong> ${carro.combustivel}<br>
-              <i class="fas fa-road"></i> <strong>Quilometragem:</strong> ${carro.kilometros.toLocaleString('pt-BR')} km<br>
-              <i class="fas fa-cogs"></i> <strong>Transmissão:</strong> ${carro.transmissao}<br>
-              <i class="fas fa-door-closed"></i> <strong>Portas:</strong> ${carro.nPortas}<br>
-            </p>
-            <div class="card-price">€ ${carro.preco.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</div>
-            <a href="#" class="card-button">Comprar</a>
-          </div>
-        `;
-        container.appendChild(card);
+    <script>
+      window.addEventListener('load', () => {
+    const iframe = document.getElementById('loadingFrame');
+    setTimeout(() => {
+      iframe.style.opacity = 0;
+      iframe.style.pointerEvents = 'none';
+    }, 2000); // esconde após 2 segundos
+  });
+
+
+    fetch('JS/carro.json')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('card-container');
+        data.rows.forEach(carro => {
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+            <img src="${carro.imagem}" alt="${carro.modelo}">
+            <div class="card-content">
+              <h2 class="card-title">${carro.marca} ${carro.modelo}</h2>
+              ${carro.subModelo && carro.subModelo !== '0' ? `<p>${carro.subModelo}</p>` : '<p>&nbsp;</p>'}
+              <p class="card-text">
+                <i class="fas fa-horse-head"></i> <strong>Potência:</strong> ${carro.potencia}<br>
+                <i class="fas fa-calendar-alt"></i> <strong>Ano:</strong> ${carro.ano}<br>
+                <i class="fas fa-gas-pump"></i> <strong>Combustível:</strong> ${carro.combustivel}<br>
+                <i class="fas fa-road"></i> <strong>Quilometragem:</strong> ${carro.kilometros.toLocaleString('pt-BR')} km<br>
+                <i class="fas fa-cogs"></i> <strong>Transmissão:</strong> ${carro.transmissao}<br>
+                <i class="fas fa-door-closed"></i> <strong>Portas:</strong> ${carro.nPortas}<br>
+              </p>
+              <div class="card-price">€ ${carro.preco.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</div>
+              <a href="#" class="card-button">Comprar</a>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      })
+      .catch(error => {
+        document.getElementById('card-container').innerHTML = "<p>Erro ao carregar os carros.</p>";
+        console.error('Erro ao carregar JSON:', error);
       });
-    })
-    .catch(error => {
-      document.getElementById('card-container').innerHTML = "<p>Erro ao carregar os carros.</p>";
-      console.error('Erro ao carregar JSON:', error);
-    });
 
-  </script>
+    </script>
 
-</div>
+  </div>
 
 </body>
 </html>
