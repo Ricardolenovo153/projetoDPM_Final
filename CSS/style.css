@@ -74,9 +74,13 @@
     font-size: 1.5rem;
   }
 
+  .links {
+    gap: 10px; 
+  }
+
   .link {
     font-size: 0.9rem;
-    padding: 10px 12px;
+    padding: 8px 12px;
   }
 
   .card-title {
@@ -102,11 +106,14 @@
     font-size: 1.2rem;
   }
 
-  .link {
-    font-size: 0.8rem;
-    padding: 8px 10px;
+  .links {
+    gap: 8px; 
   }
 
+  .link {
+    font-size: 0.8rem;
+    padding: 6px 10px; 
+  }
   .card-title {
     font-size: 1rem;
   }
