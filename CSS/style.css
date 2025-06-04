@@ -46,6 +46,11 @@
     box-shadow: 0px 4px 8px rgb(79, 2, 151); 
 }
 
+@media (max-width: 1200px) {
+  .card {
+    max-width: 350px;
+  }
+}
 
 @media (max-width: 800px) {
   .header {
@@ -58,17 +63,65 @@
     margin-left: 0;
   }
 
+  .card {
+    max-width: 100%;
+  }
+
 }
 
 @media (max-width: 600px) {
-  .links {
-    flex-direction: column;
-    gap: 10px;
+  .logo h1 {
+    font-size: 1.5rem;
   }
 
   .link {
-    width: 100%;
-    text-align: center;
+    font-size: 0.9rem;
+    padding: 10px 12px;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+  }
+
+  .card-details li {
+    font-size: 0.9rem;
+  }
+
+  .card-price {
+    font-size: 1.1rem;
+  }
+
+  .card-button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 400px) {
+  .logo h1 {
+    font-size: 1.2rem;
+  }
+
+  .link {
+    font-size: 0.8rem;
+    padding: 8px 10px;
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .card-details li {
+    font-size: 0.8rem;
+  }
+
+  .card-price {
+    font-size: 1rem;
+  }
+
+  .card-button {
+    font-size: 0.8rem;
+    padding: 6px 12px;
   }
 }
 
