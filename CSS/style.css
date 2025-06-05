@@ -183,6 +183,24 @@
     font-size: 0.95rem;
     color: #555;
     line-height: 1.4;
+    list-style: none;
+    padding: 0;
+  }
+
+  .card-text i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+    color: #333;
+  }
+
+  .card-text li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .card-text strong {
+    margin-right: 5px;
   }
 
   .card-price {
