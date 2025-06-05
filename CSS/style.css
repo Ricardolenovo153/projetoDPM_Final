@@ -47,7 +47,7 @@
 }
 
 .destaque {
-  background-image: url('https://images.unsplash.com/photo-1489976927520-2e6e7225b?auto=format&fit=crop&w=1920&h=640&q=80');
+  background-image: url('../imagens/destaque.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
