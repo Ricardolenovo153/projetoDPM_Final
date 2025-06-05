@@ -52,14 +52,14 @@
             <div class="card-content">
               <h2 class="card-title">${carro.marca} ${carro.modelo}</h2>
               ${carro.subModelo && carro.subModelo !== '0' ? `<p>${carro.subModelo}</p>` : '<p>&nbsp;</p>'}
-              <p class="card-text">
-                <i class="fas fa-horse-head"></i> <strong>Potência:</strong> ${carro.potencia}<br>
-                <i class="fas fa-calendar-alt"></i> <strong>Ano:</strong> ${carro.ano}<br>
-                <i class="fas fa-gas-pump"></i> <strong>Combustível:</strong> ${carro.combustivel}<br>
-                <i class="fas fa-road"></i> <strong>Quilometragem:</strong> ${carro.kilometros.toLocaleString('pt-BR')} km<br>
-                <i class="fas fa-cogs"></i> <strong>Transmissão:</strong> ${carro.transmissao}<br>
-                <i class="fas fa-door-closed"></i> <strong>Portas:</strong> ${carro.nPortas}<br>
-              </p>
+              <ul class="card-text">
+                <li><i class="fas fa-horse-head"></i> <strong>Potência:</strong> ${carro.potencia}</li>
+                <li><i class="fas fa-calendar-alt"></i> <strong>Ano:</strong> ${carro.ano}</li>
+                <li><i class="fas fa-gas-pump"></i> <strong>Combustível:</strong> ${carro.combustivel}</li>
+                <li><i class="fas fa-road"></i> <strong>Quilometragem:</strong> ${carro.kilometros.toLocaleString('pt-BR')} km</li>
+                <li><i class="fas fa-cogs"></i> <strong>Transmissão:</strong> ${carro.transmissao}</li>
+                <li><i class="fas fa-door-closed"></i> <strong>Portas:</strong> ${carro.nPortas}</li>
+              </ul>
               <div class="card-price">€ ${carro.preco.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</div>
               <a href="#" class="card-button">Comprar</a>
             </div>
