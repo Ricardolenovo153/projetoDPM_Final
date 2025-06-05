@@ -7,6 +7,8 @@ slider.addEventListener("input", () => {
   rpmText.textContent = rpm;
  
   // Map RPM (0 - 8000) to degrees (-90 to 90)
+  
+  // Forçar implementaçao do commit
   const angle = (rpm / 8000) * 197 - 135;
   needle.style.transform = `rotate(${angle}deg)`;
 });
