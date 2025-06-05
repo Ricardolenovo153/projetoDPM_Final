@@ -60,6 +60,7 @@
   color: white;
   padding: 20px;
   position: relative;
+  margin-bottom: 20px;
 }
 
 .destaque::before {
